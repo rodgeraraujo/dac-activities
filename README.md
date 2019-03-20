@@ -15,3 +15,24 @@
 ### Notes:
 - A playlist is a temporary storage of Bands. This data may not be available in the web session (HttpSession).
 - Whenever a new Band is added, three featured Bands should appear randomly in the web interface.
+
+
+## Contact List - Docker and Jav Sever Faces
+### Scope:
+
+>  Develop an application that meets the following requirements for the **Contact** entity. The features need to be available with UI (user interface) with a usable template in a Web environment. 
+
+### Functional requirements:
+- **RF01**: Login.
+- **RF02**: Log Off.
+- **RF03**: Search for a contact by name.
+- **RF04**: List the contacts in alphabetical order.
+- **RF05**: Group the contacts by the first letter of their name.
+- **RF06**: Register a new contact.
+- **RF07**: Edit an existing contact.
+- **RF08**: Delete an existing contact.
+
+
+### Notes:
+- The application must be implemented in pairs using Java Server Faces and its implementation must be managed by Docker.
+
