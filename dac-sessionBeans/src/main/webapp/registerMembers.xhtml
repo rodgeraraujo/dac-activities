@@ -1,36 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
     <h:head>
-        <title>Register a new member</title>
+        <title>Register a new Band</title>
+        <link href="https://metroui.org.ua/metro/css/metro-all.css?ver=4.2.39" rel="stylesheet"/>
     </h:head>
     <h:body>
-        <div>
+        <div class="pos-fixed pos-center w-25">
+            <h1>Register a member</h1>
             <h:form>
                 <div class="form-group">
-                    <label>Name</label>
-                    <h:inputText  class="input" value="#{memberController.member.name}"/>
-<!--                    <input type="email" placeholder="Enter email"/>-->
-                    <small class="text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label>Birthday</label>
-                    <!--<input type="password" placeholder="Enter email"/>-->
-                     <h:inputText class="input" value="#{memberController.member.birthday}"/>
-                </div>
-                <div class="form-group">
-                    <label>CPF</label>
-                    <!--<input type="password" placeholder="Enter email"/>-->
-                     <h:inputText class="input" value="#{memberController.member.cpf}"/>
+                    <label>Member name</label>
+                    <h:inputText id="mName"  class="input" value="#{bandController.band.name}"/>
                 </div>
 <!--                <div class="form-group">
-                    <input type="checkbox" data-role="checkbox" data-caption="Remember me">
+                    <label>Birthday</label>
+                    <p:calendar id="button" value="{calendarView.date3}" showOn="button" />
+                    <h:inputText id="mBirthday" class="input" value="#{bandController.band.originPlace}"/>
                 </div>-->
                 <div class="form-group">
-                    <h:commandButton class="button is-success is-fullwidth" value="Register" action="#{bandController.save()}"/>
-                    <!--<button class="button success">Submit data</button>-->
-                    <input type="button" class="button" value="Cancel">
+                    <label>CPF</label>
+                     <h:inputText id="mCPF" class="input" value="#{bandController.band.originPlace}"/>
+                </div>
+                <div class="form-group">
+                    <h:commandButton class="button success is-success is-fullwidth" value="Register" action="#{bandController.save()}"/>
+                    <input type="button" class="button" value="Cancel"/>
                 </div>
             </h:form>
         </div>
