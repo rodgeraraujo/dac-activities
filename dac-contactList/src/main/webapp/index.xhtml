@@ -1,74 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core" 
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Contact's List</title>
+        <title>Login</title>
         <link href="https://metroui.org.ua/metro/css/metro-all.css?ver=4.2.39" rel="stylesheet"/>
         <link href="https://metroui.org.ua/highlight/styles/github.css" rel="stylesheet"/>
         <link href="https://metroui.org.ua/docsearch/docsearch.min.css" rel="stylesheet"/>
         <link href="https://metroui.org.ua/css/site.css" rel="stylesheet"/>
         <style>
-        
+
             input.button{
                 /*padding: 4px;*/
                 margin: 3px;
             }
-
+            
         </style>
     </h:head>
     <h:body>
-        
         <div class="pos-fixed pos-center">
-            <h:form>
+            <h:form id="myform">
+                <h2>Login</h2>
+                <h:messages globalOnly="true" style="color:red;margin:8px;" />
 
-                    <h2>Contact's List</h2>
-                       <br/>
-                    <h:panelGrid>
+                <div class="form-group">
+                    <label>Username</label>
+                    <h:inputText label="Username" value="#{login.username}" />
+                </div>
 
-                            <div class="form-group">
-                                <label>Name</label>
-                                <h:inputText id="name" value="#{contact.name}" size="30"
-                                            readonly="#{not contact.editable}" /> <br/>
-                            </div>
-                        
-                            <div class="form-group">
-                                <label>Email</label>
-                                <h:inputText id="email" value="#{contact.email}" size="30"
-                                            readonly="#{not contact.editable}" /> <br/>
-                            </div>
-                        
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <h:inputText id="phone" value="#{contact.phone}" size="30"
-                                            readonly="#{not contact.editable}" /> <br/>
-                            </div>
-                            
-                            <label>Contacts list</label>
-                            <h:selectOneListbox id="list" size="10" value="#{bean.todo}"
-                                            valueChangeListener="#{bean.valueChanged}">
-                                    <f:selectItems value="#{bean.data}"/>
-                                    <f:ajax execute="@this" render="msg name desc" />
-
-                                    <f:attribute name="beanattr" value="#{bean}"/>
-                                    <!--<f:converter converterId="todoConvertor"/>-->
-                            </h:selectOneListbox>
-                            <br/>
-
-                    </h:panelGrid>
-                    <h:panelGrid columns="5">
-                            <h:commandButton class="button" value="New" actionListener="#{contactController.new}"/>
-                            <h:commandButton class="button" value="Edit" actionListener="#{contactController.edit}"/>
-                            <h:commandButton class="button" value="Save" actionListener="#{contactController.save}"/>
-                            <h:commandButton class="button" value="Delete" actionListener="#{contactController.delete}"/>
-                            <h:commandButton class="button" value="Cancel" actionListener="#{contactController.cancel}"/>
-                    </h:panelGrid>
-                    <br /><h:outputText id="msg" value="#{bean.message}" />
-
+                <div class="form-group">
+                    <label>Password</label>
+                    <h:inputSecret value="#{login.password}" /><br/>
+                </div>
+             
+                <h:commandButton class="button primary" value="login" action="#{login.login}" />
             </h:form>
         </div>
-        
     </h:body>
 </html>
-
