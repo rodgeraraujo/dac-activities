@@ -16,6 +16,7 @@
 - A playlist is a temporary storage of Bands. This data may not be available in the web session (HttpSession).
 - Whenever a new Band is added, three featured Bands should appear randomly in the web interface.
 
+___
 
 ## Contact List - Docker and Jav Sever Faces
 ### Scope:
