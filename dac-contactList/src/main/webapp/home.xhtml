@@ -22,7 +22,7 @@
 
         <div class="pos-fixed pos-center">
             <h:panelGroup rendered="#{not empty user}">
-                <p>Welcome, #{user}</p>
+                <h5><p>Welcome, #{user}</p></h5>
                 <h:form>
                     <h:commandButton class="button yellow" value="logout" action="#{login.logout}" />
                 </h:form>
