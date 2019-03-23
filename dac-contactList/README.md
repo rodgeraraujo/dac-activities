@@ -1,6 +1,6 @@
 # Activity: Contact List
 
-* Run:
+* Run/Build:
 ```
 $ sh run.sh
 ```
@@ -9,3 +9,8 @@ $ sh run.sh
 ```
 $ sh kill.sh
 ```
+
+### Login
+
+* Username: admin 
+* Password: admin
