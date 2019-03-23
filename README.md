@@ -49,12 +49,19 @@ ___
 ##### Requiriments:
 - For the above description, develop: the DER, the classes and their respective relationships.
 
+##### Result:
+The **DER** for this scenario.
+<img src="/dac-mapping/Diagram ER/dac-mapping-scenario1.png"
+     alt="DER SCENARIO 1"
+     style="float: left; margin-right: 10px;" />
+     
+*Powered by **MySQL Workbench***.
 
 #### Scenario Two - Naval:
 > For this scenario consider the following DER.
 
 <img src="/dac-mapping/Diagram ER/dac-mapping-scenario2.png"
-     alt="Markdown Monster icon"
+     alt="DER SCENARIO 2"
      style="float: left; margin-right: 10px;" />
 
 ##### Requiriments:
@@ -72,9 +79,10 @@ ___
 ##### Result:
 The **DER** for this scenario.
 <img src="/dac-mapping/Diagram ER/dac-mapping-scenario3.png"
-     alt="Markdown Monster icon"
+     alt="DER SCENARIO 3"
      style="float: left; margin-right: 10px;" />
-     *Powered by **MySQL Workbench***.
+     
+*Powered by **MySQL Workbench***.
 
 ___
 
