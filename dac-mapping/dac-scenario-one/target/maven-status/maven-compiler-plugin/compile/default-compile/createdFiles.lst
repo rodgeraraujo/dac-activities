@@ -1,0 +1,14 @@
+br/edu/ifpb/dac/scenario_one/domain/PairPrimayKey.class
+br/edu/ifpb/dac/scenario_one/domain/Actor_.class
+br/edu/ifpb/mapeamento/main/Loader.class
+br/edu/ifpb/dac/scenario_one/domain/RatingPrimaryKey.class
+br/edu/ifpb/dac/scenario_one/domain/Actor.class
+br/edu/ifpb/dac/scenario_one/domain/Pair_.class
+br/edu/ifpb/dac/scenario_one/domain/Event.class
+br/edu/ifpb/dac/scenario_one/domain/Film_.class
+br/edu/ifpb/dac/scenario_one/domain/Film.class
+br/edu/ifpb/dac/scenario_one/domain/Pair.class
+br/edu/ifpb/dac/scenario_one/domain/Rating.class
+br/edu/ifpb/dac/scenario_one/domain/Rating_.class
+br/edu/ifpb/dac/scenario_three/db/IsDbExist.class
+br/edu/ifpb/dac/scenario_one/domain/Event_.class
