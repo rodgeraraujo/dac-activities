@@ -16,8 +16,8 @@ public class Loader {
 
     public static void main(String[] args) {
         // verify if DB exists
-        IsDbExist isDbExist = new IsDbExist(); 
-        isDbExist.createDb("dac_scenario_three");
+//        IsDbExist isDbExist = new IsDbExist(); 
+//        isDbExist.createDb("dac_scenario_three");
         
         // intance DAO
         RepairDAO repairDAO = new RepairDAO();
@@ -47,17 +47,18 @@ public class Loader {
         workshop.getEmployees().add(noOne);
         
         // instace a new Repair
-//        Repair newRepair = new Repair();
-        Repair newRepair = new Repair(150f,  new Date(), noOne, workshop);;
-//        newRepair.setEmployee(noOne);
-//        newRepair.setRealizedIn(new Date());
-//        newRepair.setValue(150f);
-                
+        Repair newRepair = new Repair(150f, new Date(), noOne, workshop);;
+
         // call dao method to save new Repair
-        repairDAO.saveRepair(newRepair);
+//        repairDAO.saveRepair(newRepair);
+
+        // call dao method to find a especific repair
+        Repair findRepair = repairDAO.findRepair(1);
+        System.out.println(findRepair.toString());
         
-        // call dao method to delete a Repair
-//        repairDAO.saveRepair(1);
+        // call dao method to delete this Repair
+//        repairDAO.deleteRepair(findRepair);
+        System.out.println("<< FINISH >>");
         
     }
 }

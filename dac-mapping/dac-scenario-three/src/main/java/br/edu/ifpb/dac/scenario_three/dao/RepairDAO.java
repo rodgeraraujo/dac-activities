@@ -23,13 +23,26 @@ public class RepairDAO {
 
     public void deleteRepair(Repair repair) {
         em.getTransaction().begin();
+//        em.remove(
+//                em.find(
+//                        Repair.class,
+//                        repair.getId()
+//                )
+//        );
         em.remove(
-                em.find(
-                        Repair.class, 
-                        repair.getId()
-                )
+                findRepair(repair.getId())
         );
         em.getTransaction().commit();
+    }
+
+    public Repair findRepair(int id) {
+        em.getTransaction().begin();
+        Repair repair = em.find(
+                Repair.class,
+                id
+        );
+        em.getTransaction().commit();
+        return repair;
     }
 
 }

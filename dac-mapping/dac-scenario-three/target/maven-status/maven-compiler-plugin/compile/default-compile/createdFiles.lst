@@ -1,0 +1,9 @@
+br\edu\ifpb\dac\scenario_three\db\IsDbExist.class
+br\edu\ifpb\dac\scenario_three\domain\Workshop.class
+br\edu\ifpb\dac\scenario_three\domain\Employee.class
+br\edu\ifpb\dac\scenario_three\controller\DatabaseController.class
+br\edu\ifpb\dac\scenario_three\domain\Repair.class
+br\edu\ifpb\dac\scenario_three\infra\DbManager.class
+br\edu\ifpb\dac\scenario_three\dao\RepairDAO.class
+br\edu\ifpb\dac\scenario_three\domain\Address.class
+br\edu\ifpb\dac\scenario_three\loader\Loader.class
