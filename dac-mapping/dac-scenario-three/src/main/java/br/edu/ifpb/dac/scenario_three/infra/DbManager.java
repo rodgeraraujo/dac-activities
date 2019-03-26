@@ -18,9 +18,6 @@ public class DbManager {
             .createEntityManager();
 
     public void createDb() {
-        
-        /*THIS CLASS MAIN IS ONLY FOR TEST, WITHOUT START SERVER*/
-        
         // verify if DB exists
 //        IsDbExist isDbExist = new IsDbExist();
 //        isDbExist.createDb("dac_scenario_three");

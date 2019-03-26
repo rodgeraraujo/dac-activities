@@ -14,10 +14,12 @@ import javax.persistence.Persistence;
  */
 public class Loader {
 
+    /*THIS CLASS MAIN IS ONLY FOR TEST, WITHOUT START SERVER*/
     public static void main(String[] args) {
+         
         // create database if not exists (change db info, this works with MySQL)
-        IsDbExist isDbExist = new IsDbExist();
-        isDbExist.createDb("dac_scenario_two");
+//        IsDbExist isDbExist = new IsDbExist();
+//        isDbExist.createDb("dac_scenario_two");
 
         EntityManager em = Persistence
                 .createEntityManagerFactory("MAPPING_PU")

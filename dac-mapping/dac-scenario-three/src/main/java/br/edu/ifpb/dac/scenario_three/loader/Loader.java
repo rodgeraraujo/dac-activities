@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class Loader {
 
+    /*THIS CLASS MAIN IS ONLY FOR TEST, WITHOUT START SERVER*/
     public static void main(String[] args) {
         // verify if DB exists
 //        IsDbExist isDbExist = new IsDbExist(); 

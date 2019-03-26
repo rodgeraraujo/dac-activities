@@ -15,7 +15,7 @@ import javax.persistence.Table;
  * @author Rodger
  */
 @Entity
-@Table(name = "commander")
+@Table(name = "commander_data")
 public class Commander implements Serializable {
 
     @Id

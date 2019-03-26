@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @author Rodger
  */
 @Entity
-@Table(name = "ship")
+@Table(name = "ship_data")
 public class Ship implements Serializable{
 
     @Id

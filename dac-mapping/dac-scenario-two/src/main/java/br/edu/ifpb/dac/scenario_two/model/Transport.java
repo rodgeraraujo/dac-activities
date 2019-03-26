@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
  * @author Rodger
  */
 @Entity
-@Table(name = "transport")
+@Table(name = "transport_data")
 @IdClass(TransportPrimaryKey.class)
 public class Transport implements Serializable {
 
