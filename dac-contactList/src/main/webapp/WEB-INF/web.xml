@@ -10,19 +10,22 @@
         <param-value>Development</param-value>
     </context-param>
     
+    <filter>  
+        <filter-name>loginFilter</filter-name>  
+        <filter-class>br.edu.ifpb.dac.contactlist.filter.FilterLogin</filter-class>  
+    </filter> 
+    
+    <filter-mapping>  
+        <filter-name>loginFilter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+        <url-pattern>/home.xhtml</url-pattern>  
+    </filter-mapping>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <filter>  
-        <filter-name>filter</filter-name>  
-        <filter-class>br.edu.ifpb.dac.contactlist.filter.FilterLogin</filter-class>  
-    </filter> 
-    <filter-mapping>  
-        <filter-name>filter</filter-name>  
-        <url-pattern>/*</url-pattern>  
-    </filter-mapping>
      
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>

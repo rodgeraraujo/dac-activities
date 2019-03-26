@@ -41,6 +41,7 @@
     </dependencies>
 
     <build>
+         <finalName>contactList</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,7 +72,7 @@
                         <phase>validate</phase>
                         <goals>
                             <goal>copy</goal>
-                        </goals>
+                        </goals>    
                         <configuration>
                             <outputDirectory>${endorsed.dir}</outputDirectory>
                             <silent>true</silent>

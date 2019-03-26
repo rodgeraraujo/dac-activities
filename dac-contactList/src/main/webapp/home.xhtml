@@ -22,63 +22,83 @@
 
         <div class="pos-fixed pos-center">
             <h:panelGroup rendered="#{not empty user}">
-                <h5><p>Welcome, #{user}</p></h5>
+                <h5><p>Welcome, #{user.name}</p></h5>
                 <h:form>
                     <h:commandButton class="button yellow" value="logout" action="#{login.logout}" />
                 </h:form>
                 <hr/>  
             </h:panelGroup>
-
         
             <h:form>
 
                 <h2>Contact's List</h2>
                 <br/>
+                <h:messages globalOnly="true" style="color:green;margin:8px;" />
                 <h:panelGrid>
 
                     <div class="form-group">
                         <label>Name</label>
-                        <h:inputText id="name" value="#{contact.name}" size="30"
-                                     readonly="#{not contact.editable}" /> <br/>
+                        <h:inputText id="name" value="#{contact.name}" size="30" required="true"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
-                        <h:inputText id="email" value="#{contact.email}" size="30"
-                                     readonly="#{not contact.editable}" /> <br/>
+                        <h:inputText id="email" value="#{contact.email}" size="30" required="true"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
                     </div>
 
                     <div class="form-group">
                         <label>Phone</label>
-                        <h:inputText id="phone" value="#{contact.phone}" size="30"
-                                     readonly="#{not contact.editable}" /> <br/>
+                        <h:inputText id="phone" value="#{contact.phone}" size="30" required="true"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
                     </div>
 
-                    <hr/>  
-                    <label>Contacts list</label>
-                    <h:selectOneListbox id="list" size="10" value="#{bean.todo}"
-                                        valueChangeListener="#{bean.valueChanged}">
-                        <f:selectItems value="#{bean.data}"/>
+<!--                    <h:selectOneListbox id="list" size="10" value="{bean.todo}"
+                                        valueChangeListener="{bean.valueChanged}">
+                        <f:selectItems value="{bean.data}"/>
                         <f:ajax execute="@this" render="msg name desc" />
 
-                        <f:attribute name="beanattr" value="#{bean}"/>
-                        <!--<f:converter converterId="todoConvertor"/>-->
-                    </h:selectOneListbox>
-                    <br/>
+                        <f:attribute name="beanattr" value="{bean}"/>
+                        <f:converter converterId="todoConvertor"/>
+                    </h:selectOneListbox>-->
+                    <!--<br/>-->
 
                 </h:panelGrid>
                 
                 <hr/>  
                 
                 <h:panelGrid columns="5">
-                    <h:commandButton class="button" value="New" actionListener="#{contactController.new}"/>
-                    <h:commandButton class="button" value="Edit" actionListener="#{contactController.edit}"/>
-                    <h:commandButton class="button" value="Save" actionListener="#{contactController.save}"/>
-                    <h:commandButton class="button" value="Delete" actionListener="#{contactController.delete}"/>
+                        <h:commandButton class="button" value="New" actionListener="#{contact.saveContact()}"/>
+                    <h:commandButton class="button" value="Edit" actionListener="{contact.editContact()}"/>
+                    <!--<h:commandButton class="button" value="Save" actionListener="{contact.updateContact(id, c)}"/>-->
+                    <!--<h:commandButton class="button" value="Delete" actionListener="{contact.remove(id)}"/>-->
                     <!--<h:commandButton class="button" value="Cancel" actionListener="{contactController.cancel}"/>-->
                 </h:panelGrid>
-                <br /><h:outputText id="msg" value="#{bean.message}" />
+                <br/>
+                <br /><h:outputText id="msg" value="{bean.message}" />
 
+            </h:form>
+            
+            <h:form>
+                <label>Contacts list</label>
+                <h:dataTable value="#{contact.listAllContacts()}" 
+                             var="contactInfo"
+                             class="striped highlight">
+                    <h:column>#{contactInfo.id}</h:column>
+                    <h:column>#{contactInfo.name}</h:column>
+                    <h:column>#{contactInfo.birthday}</h:column>
+                    <h:column>#{contactInfo.email}</h:column>
+                    <h:column>#{contactInfo.phone}</h:column>
+<!--                        <h:column>
+                        <h:commandButton value="x" action="" 
+                                         class="btn-floating"> 
+                        </h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="editar" action="" class="btn"/>
+                    </h:column>-->
+                </h:dataTable>
             </h:form>
         </div>
 
