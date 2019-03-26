@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.contactlist.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,11 @@ public class Contact implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name; 
+    
+    @Column(unique=true)
     private String email;
+    
+    @Column(unique=true)
     private String phone;
     private LocalDate birthday;
 

@@ -3,6 +3,7 @@ package br.edu.ifpb.dac.contactlist.infra;
 import br.edu.ifpb.dac.contactlist.model.Contact;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -24,10 +25,30 @@ public class ManagerContact {
     }
     
     public boolean save(Contact contact) {
-        em.getTransaction().begin();
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
+        
         em.persist(contact);
         em.getTransaction().commit();
         return true;
+    }
+    
+    public Contact find(String email) {
+        try{
+            if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
+            
+            String sql = "SELECT c FROM Contact c WHERE c.email = :email";
+            
+            Contact contact = em.createQuery(sql, Contact.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+
+            em.getTransaction().commit();
+            return contact;
+        } catch(NoResultException e) {
+            return null;
+        }
     }
     
 //    public Contact search(String name) {

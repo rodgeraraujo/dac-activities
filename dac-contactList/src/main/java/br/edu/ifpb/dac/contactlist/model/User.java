@@ -1,6 +1,7 @@
 package br.edu.ifpb.dac.contactlist.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,8 +20,12 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+    
+    @Column(unique=true)
     private String username;
     private String password;
+    
+    @Column(unique=true)
     private String email;
 
     public User() {

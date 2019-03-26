@@ -31,10 +31,13 @@ public class ContactController implements Serializable {
     public String saveContact() {
         contact = new Contact(name, email, phone, LocalDate.now());
         
-        context.addMessage(null, new FacesMessage("Success: Contact registed successfuly."));
+        if (this.mc.find(email) == null) {
+            this.mc.save(contact);
+            context.addMessage(null, new FacesMessage("Success: Contact registed successfuly."));
+            return null;
+        }
         
-        this.mc.save(contact);
-                
+        context.addMessage(null, new FacesMessage("Error: Email or Phone alread in use."));    
         return null;
     }
     

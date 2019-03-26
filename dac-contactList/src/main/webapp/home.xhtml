@@ -20,7 +20,8 @@
     </h:head>
     <h:body>
 
-        <div class="pos-fixed pos-center">
+        <div class="grid">
+            <div class="cell-4 offset-4">
             <h:panelGroup rendered="#{not empty user}">
                 <h5><p>Welcome, #{user.name}</p></h5>
                 <h:form>
@@ -76,20 +77,46 @@
                     <!--<h:commandButton class="button" value="Cancel" actionListener="{contactController.cancel}"/>-->
                 </h:panelGrid>
                 <br/>
-                <br /><h:outputText id="msg" value="{bean.message}" />
+                <!--<br /><h:outputText id="msg" value="{bean.message}" />-->
 
             </h:form>
             
             <h:form>
                 <label>Contacts list</label>
-                <h:dataTable value="#{contact.listAllContacts()}" 
-                             var="contactInfo"
-                             class="striped highlight">
-                    <h:column>#{contactInfo.id}</h:column>
-                    <h:column>#{contactInfo.name}</h:column>
-                    <h:column>#{contactInfo.birthday}</h:column>
-                    <h:column>#{contactInfo.email}</h:column>
-                    <h:column>#{contactInfo.phone}</h:column>
+                <h:dataTable value="#{contact.listAllContacts()}" var="c"
+                             styleClass="table striped compact"
+                             rowClasses="cell-hover">
+                             <!--headerClass="sortable-column sort-asc">-->
+<!--                    <thead>
+                        <tr>
+                            <th class="sortable-column sort-asc">#</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>E-mail</th>
+                            <th>Birthday</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>-->
+                    <h:column>
+                        <f:facet name="header">#</f:facet>
+                        #{c.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{c.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        #{c.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Birthday</f:facet>
+                        #{c.birthday}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                        #{c.phone}
+                    </h:column>
 <!--                        <h:column>
                         <h:commandButton value="x" action="" 
                                          class="btn-floating"> 
@@ -100,6 +127,7 @@
                     </h:column>-->
                 </h:dataTable>
             </h:form>
+            </div>
         </div>
 
     </h:body>
