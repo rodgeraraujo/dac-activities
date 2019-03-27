@@ -2,17 +2,26 @@ package br.edu.ifpb.dac.contactlist.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "contact_data")
 public class Contact implements Serializable{
+    
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name; 
+    
+    @Column(unique=true)
     private String email;
+    
+    @Column(unique=true)
     private String phone;
     private LocalDate birthday;
 
@@ -21,6 +30,13 @@ public class Contact implements Serializable{
     
     public Contact(long id, String name, String email, String phone, LocalDate birthday) {
         this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.birthday = birthday;
+    }
+    
+    public Contact(String name, String email, String phone, LocalDate birthday) {
         this.name = name;
         this.email = email;
         this.phone = phone;

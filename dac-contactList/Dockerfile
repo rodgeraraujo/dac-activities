@@ -1,2 +1,4 @@
 FROM payara/micro
-COPY /target/dac-contactList-1.0-SNAPSHOT.war $DEPLOY_DIR
+#FROM payara/server-full
+ENV APPNAME contactList
+COPY /target/${APPNAME}.war $DEPLOY_DIR

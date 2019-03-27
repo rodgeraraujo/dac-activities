@@ -19,10 +19,13 @@ public class FilterLogin implements Filter {
         HttpSession session = request.getSession(false);
 
         String loginURI = request.getContextPath() + "/index.xhtml";
+        String homeURI = request.getContextPath() + "/home.xhtml";
 
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
-        boolean resourceRequest = request.getRequestURI().startsWith(request.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER);
+        boolean resourceRequest = request.getRequestURI().startsWith(
+                request.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER
+        );
 
         if (loggedIn || loginRequest || resourceRequest) {
             chain.doFilter(request, response);

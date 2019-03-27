@@ -18,7 +18,7 @@ public class Login {
 
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (this.username.equals("admin") && this.password.equals("admin")) {
+        if (validUser(this.username, this.password)) {//(this.username.equals("admin") && this.password.equals("admin")) {
             context.getExternalContext().getSessionMap().put("user", username);
             try {
                 context.getExternalContext().redirect("home.xhtml");
@@ -32,6 +32,14 @@ public class Login {
         }
     }
 
+    public boolean validUser(String username, String password) {
+        if (username.equals("admin") && password.equals("123")) {
+            return true;
+        }
+        
+        return false;
+    }
+    
     public void logout() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().invalidateSession();
@@ -41,7 +49,7 @@ public class Login {
             e.printStackTrace();
         }
     }
-
+  
     public String getUsername() {
         return username;
     }
