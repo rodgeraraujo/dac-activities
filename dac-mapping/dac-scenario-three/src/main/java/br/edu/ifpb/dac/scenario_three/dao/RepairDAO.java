@@ -11,7 +11,7 @@ public class RepairDAO {
     EntityManagerFactory emf;
 
     public RepairDAO() {
-        emf = Persistence.createEntityManagerFactory("MAPPING_PU");
+        emf = Persistence.createEntityManagerFactory("databases");
         em = emf.createEntityManager();
     }
 

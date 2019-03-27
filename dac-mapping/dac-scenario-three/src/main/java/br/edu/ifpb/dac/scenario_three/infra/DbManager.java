@@ -1,7 +1,6 @@
 package br.edu.ifpb.dac.scenario_three.infra;
 
 import br.edu.ifpb.dac.scenario_three.dao.RepairDAO;
-import br.edu.ifpb.dac.scenario_three.db.IsDbExist;
 import br.edu.ifpb.dac.scenario_three.domain.Address;
 import br.edu.ifpb.dac.scenario_three.domain.Employee;
 import br.edu.ifpb.dac.scenario_three.domain.Repair;
@@ -14,14 +13,10 @@ import javax.persistence.Persistence;
 public class DbManager {
 
     private EntityManager em = Persistence
-            .createEntityManagerFactory("MAPPING_PU")
+            .createEntityManagerFactory("databases")
             .createEntityManager();
 
     public void createDb() {
-        // verify if DB exists
-//        IsDbExist isDbExist = new IsDbExist();
-//        isDbExist.createDb("dac_scenario_three");
-
         // intance DAO
         RepairDAO repairDAO = new RepairDAO();
 
@@ -63,5 +58,5 @@ public class DbManager {
         System.out.println("<< FINISH >>");
 
     }
-
+    
 }
