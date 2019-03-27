@@ -19,7 +19,6 @@ public final class IsDbExist {
 //    private final String classLoader = "org.postgresql.Driver";
 //    private final String user = "postgres";
 //    private final String password = "12345678";
-
     private final String url = "jdbc:mysql://localhost:3306/";
     private final String classLoader = "com.mysql.jdbc.Driver";
     private final String user = "root";

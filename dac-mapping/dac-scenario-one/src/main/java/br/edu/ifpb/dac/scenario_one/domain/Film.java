@@ -32,25 +32,24 @@ public class Film implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String title;
-    
+
     @ManyToMany
     @Basic
     private List<Pair> pairs;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date releaseYear;
     private String genre;
     private String director;
-    
+
     @ManyToMany
     @JoinTable(
             name = "actor_film",
             inverseJoinColumns = @JoinColumn(name = "actor"),
             joinColumns = @JoinColumn(name = "film")
-            
     )
     private List<Actor> actors;
-    
+
     @OneToMany(mappedBy = "film", targetEntity = Film.class)
     @Basic
     private List<Rating> rating;
@@ -122,6 +121,4 @@ public class Film implements Serializable {
         this.rating = rating;
     }
 
-    
-    
 }

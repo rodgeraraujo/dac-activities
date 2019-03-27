@@ -23,14 +23,14 @@ public class Event implements Serializable {
     private String name;
     private String place;
     private int eventYear;
-    
+
     @OneToMany
     private List<Rating> ratings;
 
     public Event() {
     }
 
-    public Event(int id, String name, String place, 
+    public Event(int id, String name, String place,
             int eventYear, List<Rating> ratings) {
         this.id = id;
         this.name = name;
@@ -78,7 +78,5 @@ public class Event implements Serializable {
     public void setRating(List<Rating> rating) {
         this.ratings = ratings;
     }
-    
-    
-    
+
 }

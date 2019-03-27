@@ -6,7 +6,8 @@ import java.io.Serializable;
  *
  * @author Rodger
  */
-public class RatingPrimaryKey implements Serializable{
+public class RatingPrimaryKey implements Serializable {
+
     private int id_film;
     private int id_event;
 
@@ -57,7 +58,5 @@ public class RatingPrimaryKey implements Serializable{
         }
         return true;
     }
-    
-    
 
 }

@@ -25,7 +25,7 @@ public class Actor implements Serializable {
     private String name;
     private char gender;
     private String nationality;
-    
+
     @ManyToMany
     @JoinTable(
             inverseJoinColumns = @JoinColumn(name = "actor"),

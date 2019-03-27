@@ -11,7 +11,6 @@ public class PairPrimayKey implements Serializable {
     private int id_actor1;
     private int id_actor2;
     private int id_film;
-    
 
     public PairPrimayKey() {
     }
@@ -64,6 +63,5 @@ public class PairPrimayKey implements Serializable {
         }
         return true;
     }
-    
-    
+
 }
