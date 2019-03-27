@@ -1,3 +1,2 @@
-FROM openjdk:8-jdk-alpine 
-COPY target/dac-scenario-one-1.0-SNAPSHOT.jar app.jar
-CMD java -jar app.jar
+FROM payara/micro 
+COPY /target/scenario-one.war $DEPLOY_DIR

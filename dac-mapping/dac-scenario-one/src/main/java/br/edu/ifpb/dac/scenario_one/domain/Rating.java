@@ -121,5 +121,4 @@ class Rating implements Serializable {
         return true;
     }
 
-    
 }
