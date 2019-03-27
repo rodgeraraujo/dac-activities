@@ -31,11 +31,11 @@ public class ContactController implements Serializable {
     public String saveContact() {
         contact = new Contact(name, email, phone, LocalDate.now());
         
-        if (this.mc.find(email) == null) {
+        if (this.mc.find(phone) == null) {
             this.mc.save(contact);
             context.addMessage(null, new FacesMessage("Success: Contact registed successfuly."));
             return null;
-        }
+        }  this.mc.save(contact);
         
         context.addMessage(null, new FacesMessage("Error: Email or Phone alread in use."));    
         return null;
@@ -47,17 +47,22 @@ public class ContactController implements Serializable {
 //        return contact;
 //    }
 //    
-//    public Contact updateContact(int id,Contact c) {
-//        ManagerContact mc = new ManagerContact(em);
-//        Contact contact = mc.update(id, c);
-//        return contact;
-//    }
-//    
-//    public Contact remove(long id){
-//        ManagerContact mc = new ManagerContact(em);
-//        Contact contact = mc.remove(id);
-//        return contact;
-//    }
+    public String updateContact(int id) {
+        System.out.println("User id:" + id);
+        
+        contact = new Contact(id, name, email, phone, birthday);
+        System.out.println("User info:" + contact.toString());
+        Contact c = this.mc.update(id, contact);
+        context.addMessage(null, new FacesMessage("Success: Contact updated successfuly."));
+        return null;
+    }
+    
+    public Contact remove(int id){
+        System.out.println("c.id: " + id);
+        mc.remove(id);
+        context.addMessage(null, new FacesMessage("Success: Contact deleted."));
+        return contact;
+    }
 //    
     public List<Contact> listAllContacts() {
         return this.mc.listAll();
