@@ -37,6 +37,11 @@
                 <h:messages globalOnly="true" style="color:green;margin:8px;" />
                 <h:panelGrid>
 
+                     <div class="form-group">
+                        <h:inputHidden id="id" value="#{contact.id}"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
+                    </div>
+                    
                     <div class="form-group">
                         <label>Name</label>
                         <h:inputText id="name" value="#{contact.name}" size="30" required="true"/> <br/>
@@ -70,8 +75,8 @@
                 <hr/>  
                 
                 <h:panelGrid columns="5">
-                        <h:commandButton class="button" value="New" actionListener="#{contact.saveContact()}"/>
-                    <h:commandButton class="button" value="Edit" actionListener="{contact.editContact()}"/>
+                    <h:commandButton class="button" value="New" actionListener="#{contact.saveContact()}"/>
+                    <h:commandButton class="button" value="Update" actionListener="#{contact.updateContact(id)}"/>
                     <!--<h:commandButton class="button" value="Save" actionListener="{contact.updateContact(id, c)}"/>-->
                     <!--<h:commandButton class="button" value="Delete" actionListener="{contact.remove(id)}"/>-->
                     <!--<h:commandButton class="button" value="Cancel" actionListener="{contactController.cancel}"/>-->
@@ -117,13 +122,13 @@
                         <f:facet name="header">Phone</f:facet>
                         #{c.phone}
                     </h:column>
-<!--                        <h:column>
-                        <h:commandButton value="x" action="" 
+                        <h:column>
+                            <h:commandButton value="x" action="#{contact.remove(c.id)}" 
                                          class="btn-floating"> 
                         </h:commandButton>
                     </h:column>
-                    <h:column>
-                        <h:commandButton value="editar" action="" class="btn"/>
+<!--                    <h:column>
+                        <h:commandButton value="edit" action="" class="btn"/>
                     </h:column>-->
                 </h:dataTable>
             </h:form>

@@ -15,8 +15,8 @@ public class Contact implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String name; 
+    private int id;
+    private String name;
     
     @Column(unique=true)
     private String email;
@@ -28,7 +28,7 @@ public class Contact implements Serializable{
     public Contact() {
     }
     
-    public Contact(long id, String name, String email, String phone, LocalDate birthday) {
+    public Contact(int id, String name, String email, String phone, LocalDate birthday) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -51,7 +51,7 @@ public class Contact implements Serializable{
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -86,4 +86,11 @@ public class Contact implements Serializable{
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", birthday=" + birthday + '}';
+    }
+    
+    
 }

@@ -38,7 +38,7 @@ public class ManagerContact {
             if(!em.getTransaction().isActive())
             em.getTransaction().begin();
             
-            String sql = "SELECT c FROM Contact c WHERE c.email = :email";
+            String sql = "SELECT c FROM Contact c WHERE c.phone = :email";
             
             Contact contact = em.createQuery(sql, Contact.class)
                     .setParameter("email", email)
@@ -61,26 +61,28 @@ public class ManagerContact {
 //        return Contact.empty();
 //    }
 //    
-//    public Contact update(int id,Contact c) {
-//        Contact find = em.find(Contact.class,id);
-//        if (find == null) {
-//            return Contact.empty();
-//        }
-//        find = c;
-//        find.setId(id);
-//
-//        return em.merge(find);
-//    }
-//    
-//    public Contact remove(long id){
-//        em.getTransaction().begin();
-//        Contact c = em.find(Contact.class, id);
-//        if (c != null) {
-//            em.remove(c);
-//            return c;
-//        }
-//        return Contact.empty();
-//    }
+    public Contact update(int id,Contact c) {
+        Contact find = em.find(Contact.class,id);
+        if (find == null) {
+            return Contact.empty();
+        }
+        find = c;
+        find.setId(id);
+
+        return em.merge(find);
+    }
+    
+    public Contact remove(int id){
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
+        
+        Contact c = em.find(Contact.class, id);
+        if (c != null) {
+            em.remove(c);
+            return c;
+        }
+        return Contact.empty();
+    }
     
     public List<Contact> listAll() {
         String sql = "SELECT c FROM Contact c";
