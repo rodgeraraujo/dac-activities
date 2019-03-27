@@ -6,7 +6,10 @@
         <title>Scenario One</title>
     </h:head>
     <h:body>
-        <h:commandButton class="button primary" value="PERSIST" action="#{databaseController.create()}" />
+        <h:messages globalOnly="true" style="color: green"/>
+        <h:form>
+            <h:commandButton value="PERSIST DATA" action="#{databaseController.create()}" style="width: 100px; height: 30px; margin: 15%" />
+        </h:form>
     </h:body>
 </html>
 

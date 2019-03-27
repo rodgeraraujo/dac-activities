@@ -6,14 +6,10 @@ import javax.persistence.Persistence;
 public class DbManager {
 
     private EntityManager em = Persistence
-            .createEntityManagerFactory("MAPPING_PU")
+            .createEntityManagerFactory("databases")
             .createEntityManager();
 
     public void createDb() {
-
-        // verify if DB exists
-//        IsDbExist isDbExist = new IsDbExist();
-//        isDbExist.createDb("dac_scenario_three");
 
         em.getTransaction().begin();
         em.getTransaction().commit();
