@@ -19,15 +19,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 
 
 @Stateless
-@Remote(IBand.class)
-public class BandImpl implements IBand{
+//@Remote(IBand.class)
+public class BandImpl { //implements IBand{
     @Resource(lookup = "java:app/jdbc/sessionbeans")
     private DataSource dataSource;
 
-    @Override
+//    @Override
     public boolean saveBand(Band band) {
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement createStatement = conn.prepareStatement(
@@ -44,7 +45,9 @@ public class BandImpl implements IBand{
         return false;
     }
 
-    @Override
+    
+
+//    @Override
     public boolean deleteBand(int id) {
         try (Connection conn = dataSource.getConnection()) {
             Statement createStatement = conn.createStatement();
@@ -59,7 +62,7 @@ public class BandImpl implements IBand{
         return false;
     }
 
-    @Override
+//    @Override
     public boolean updateBand(Band band) {
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement createStatement = conn.prepareStatement(
@@ -76,10 +79,11 @@ public class BandImpl implements IBand{
         }
         return false;
     }
-
-    @Override
-    public List<Band> allBands() {
-        List<Band> lista = new ArrayList<>();
+    
+  
+//    @Override
+    public Iterator<Band> allBands() {
+        ArrayList<Band> lista = new ArrayList<>();
         try (Connection conn = dataSource.getConnection()) {
             Statement createStatement = conn.createStatement();
             ResultSet result = createStatement.executeQuery("SELECT * FROM band;");
@@ -88,7 +92,7 @@ public class BandImpl implements IBand{
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return lista;
+        return lista.iterator();
     }
 
     private void iteraractWithBands(ResultSet result, List<Band> lista) {

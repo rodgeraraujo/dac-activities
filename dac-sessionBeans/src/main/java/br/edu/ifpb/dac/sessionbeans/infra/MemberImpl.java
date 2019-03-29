@@ -29,6 +29,7 @@ import javax.ejb.Stateless;
 public class MemberImpl implements IMember {
     
     @Resource(lookup = "java:app/jdbc/sessionbeans")
+//    @Resource(lookup = "java:app/jdbc/sessionbeans-docker")
     private DataSource dataSource;
     
     @Override
