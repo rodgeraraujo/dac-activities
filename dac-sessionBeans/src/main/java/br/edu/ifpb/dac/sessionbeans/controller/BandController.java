@@ -41,7 +41,7 @@ public class BandController implements Serializable{
         return null;
     }
     
-    public Iterator<Band> allBands() {
+    public List<Band> allBands() {
         return this.bandImpl.allBands();
     }
     

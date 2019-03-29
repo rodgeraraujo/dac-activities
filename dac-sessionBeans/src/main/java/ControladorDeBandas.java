@@ -8,6 +8,7 @@ import br.edu.ifpb.dac.sessionbeans.controller.BandController;
 import br.edu.ifpb.dac.sessionbeans.model.Band;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,10 +47,11 @@ public class ControladorDeBandas extends HttpServlet {
 
     private void printAllBands(final PrintWriter out) {
         
-        bandas.allBands()
-            .forEachRemaining(
-                    c -> out.println("<p>"+c.getName()+"</p>")
-            );
+        List<Band> bands = (List<Band>) bandas.allBands();
+        for (int i = 0; i < bands.size(); i++) {
+            out.println("<p>"+bands.get(i).getName()+"</p>");
+        }
+        
     }
 
 }

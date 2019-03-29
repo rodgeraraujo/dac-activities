@@ -24,11 +24,12 @@ import java.util.Iterator;
 
 @Stateless
 //@Remote(IBand.class)
-public class BandImpl { //implements IBand{
-    @Resource(lookup = "java:app/jdbc/sessionbeans")
+public class BandImpl implements IBand{
+//    @Resource(lookup = "java:app/jdbc/sessionbeans")
+    @Resource(lookup = "java:app/jdbc/sessionbeans-docker")
     private DataSource dataSource;
 
-//    @Override
+    @Override
     public boolean saveBand(Band band) {
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement createStatement = conn.prepareStatement(
@@ -47,7 +48,7 @@ public class BandImpl { //implements IBand{
 
     
 
-//    @Override
+    @Override
     public boolean deleteBand(int id) {
         try (Connection conn = dataSource.getConnection()) {
             Statement createStatement = conn.createStatement();
@@ -62,7 +63,7 @@ public class BandImpl { //implements IBand{
         return false;
     }
 
-//    @Override
+    @Override
     public boolean updateBand(Band band) {
         try (Connection conn = dataSource.getConnection()) {
             PreparedStatement createStatement = conn.prepareStatement(
@@ -81,8 +82,8 @@ public class BandImpl { //implements IBand{
     }
     
   
-//    @Override
-    public Iterator<Band> allBands() {
+    @Override
+    public List<Band> allBands() {
         ArrayList<Band> lista = new ArrayList<>();
         try (Connection conn = dataSource.getConnection()) {
             Statement createStatement = conn.createStatement();
@@ -92,7 +93,7 @@ public class BandImpl { //implements IBand{
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return lista.iterator();
+        return lista;
     }
 
     private void iteraractWithBands(ResultSet result, List<Band> lista) {

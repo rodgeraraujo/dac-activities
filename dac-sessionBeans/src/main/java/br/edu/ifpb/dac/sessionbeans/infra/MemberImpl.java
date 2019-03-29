@@ -28,8 +28,8 @@ import javax.ejb.Stateless;
 @Remote(IMember.class)
 public class MemberImpl implements IMember {
     
-    @Resource(lookup = "java:app/jdbc/sessionbeans")
-//    @Resource(lookup = "java:app/jdbc/sessionbeans-docker")
+//    @Resource(lookup = "java:app/jdbc/sessionbeans")
+    @Resource(lookup = "java:app/jdbc/sessionbeans-docker")
     private DataSource dataSource;
     
     @Override
