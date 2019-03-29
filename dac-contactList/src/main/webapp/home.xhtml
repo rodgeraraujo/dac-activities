@@ -37,26 +37,23 @@
                 <h:messages globalOnly="true" style="color:green;margin:8px;" />
                 <h:panelGrid>
 
-                     <div class="form-group">
-                        <h:inputHidden id="id" value="#{contact.id}"/> <br/>
-                                     <!--readonly="{not contact.editable}" /> <br/>-->
-                    </div>
-                    
+                    <h:inputHidden id="id" value="#{contactCtrl.contact.id}"/> <br/>
+                        
                     <div class="form-group">
                         <label>Name</label>
-                        <h:inputText id="name" value="#{contact.name}" size="30" required="true"/> <br/>
+                        <h:inputText id="name" value="#{contactCtrl.contact.name}" size="30" required="true"/> <br/>
                                      <!--readonly="{not contact.editable}" /> <br/>-->
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
-                        <h:inputText id="email" value="#{contact.email}" size="30" required="true"/> <br/>
+                        <h:inputText id="email" value="#{contactCtrl.contact.email}" size="30" required="true"/> <br/>
                                      <!--readonly="{not contact.editable}" /> <br/>-->
                     </div>
 
                     <div class="form-group">
                         <label>Phone</label>
-                        <h:inputText id="phone" value="#{contact.phone}" size="30" required="true"/> <br/>
+                        <h:inputText id="phone" value="#{contactCtrl.contact.phone}" size="30" required="true"/> <br/>
                                      <!--readonly="{not contact.editable}" /> <br/>-->
                     </div>
 
@@ -75,8 +72,8 @@
                 <hr/>  
                 
                 <h:panelGrid columns="5">
-                    <h:commandButton class="button" value="New" actionListener="#{contact.saveContact()}"/>
-                    <h:commandButton class="button" value="Update" actionListener="#{contact.updateContact(id)}"/>
+                    <h:commandButton class="button" value="New" actionListener="#{contactCtrl.saveContact()}"/>
+                    <h:commandButton class="button" value="Update" actionListener="#{contactCtrl.updateContact(contactCtrl.contact.id)}"/>
                     <!--<h:commandButton class="button" value="Save" actionListener="{contact.updateContact(id, c)}"/>-->
                     <!--<h:commandButton class="button" value="Delete" actionListener="{contact.remove(id)}"/>-->
                     <!--<h:commandButton class="button" value="Cancel" actionListener="{contactController.cancel}"/>-->
@@ -88,7 +85,7 @@
             
             <h:form>
                 <label>Contacts list</label>
-                <h:dataTable value="#{contact.listAllContacts()}" var="c"
+                <h:dataTable value="#{contactCtrl.listAllContacts()}" var="c"
                              styleClass="table striped compact"
                              rowClasses="cell-hover">
                              <!--headerClass="sortable-column sort-asc">-->
@@ -123,7 +120,7 @@
                         #{c.phone}
                     </h:column>
                         <h:column>
-                            <h:commandButton value="x" action="#{contact.remove(c.id)}" 
+                            <h:commandButton value="x" action="#{contactCtrl.remove(c)}" 
                                          class="btn-floating"> 
                         </h:commandButton>
                     </h:column>

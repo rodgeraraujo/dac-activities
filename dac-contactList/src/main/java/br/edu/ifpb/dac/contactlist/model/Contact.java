@@ -2,6 +2,7 @@ package br.edu.ifpb.dac.contactlist.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +19,10 @@ public class Contact implements Serializable{
     private int id;
     private String name;
     
-    @Column(unique=true)
+//    @Column(unique=true)
     private String email;
     
-    @Column(unique=true)
+//    @Column(unique=true)
     private String phone;
     private LocalDate birthday;
 
@@ -33,7 +34,7 @@ public class Contact implements Serializable{
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.birthday = birthday;
+        this.birthday = LocalDate.now();
     }
     
     public Contact(String name, String email, String phone, LocalDate birthday) {
@@ -47,7 +48,7 @@ public class Contact implements Serializable{
         return new Contact(-1,"","", "", null);
     }
     
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -87,6 +88,48 @@ public class Contact implements Serializable{
         this.birthday = birthday;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.email);
+        hash = 59 * hash + Objects.hashCode(this.phone);
+        hash = 59 * hash + Objects.hashCode(this.birthday);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Contact other = (Contact) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.phone, other.phone)) {
+            return false;
+        }
+        if (!Objects.equals(this.birthday, other.birthday)) {
+            return false;
+        }
+        return true;
+    }
+
+    
     @Override
     public String toString() {
         return "Contact{" + "id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", birthday=" + birthday + '}';

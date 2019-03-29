@@ -33,15 +33,15 @@ public class ManagerContact {
         return true;
     }
     
-    public Contact find(String email) {
+    public Contact find(String phone) {
         try{
             if(!em.getTransaction().isActive())
             em.getTransaction().begin();
             
-            String sql = "SELECT c FROM Contact c WHERE c.phone = :email";
+            String sql = "SELECT c FROM Contact c WHERE c.phone = :phone";
             
             Contact contact = em.createQuery(sql, Contact.class)
-                    .setParameter("email", email)
+                    .setParameter("phone", phone)
                     .getSingleResult();
 
             em.getTransaction().commit();
@@ -62,26 +62,36 @@ public class ManagerContact {
 //    }
 //    
     public Contact update(int id,Contact c) {
+        if(!em.getTransaction().isActive())
+            em.getTransaction().begin();
+        
         Contact find = em.find(Contact.class,id);
+        
         if (find == null) {
             return Contact.empty();
         }
         find = c;
         find.setId(id);
 
-        return em.merge(find);
+        Contact updatedContact = new Contact();
+        em.merge(c);
+        em.getTransaction().commit();
+        return updatedContact;
     }
     
-    public Contact remove(int id){
-        if(!em.getTransaction().isActive())
-            em.getTransaction().begin();
-        
-        Contact c = em.find(Contact.class, id);
+//    public boolean remove(int id){
+    public boolean remove(Contact c){
+//        if(!em.getTransaction().isActive())
+//            em.getTransaction().begin();
+        em.getTransaction().begin();
+//        Contact c = em.find(Contact.class, id); 
         if (c != null) {
             em.remove(c);
-            return c;
+            em.getTransaction().commit();
+            return true;
         }
-        return Contact.empty();
+        return false;
+//        return Contact.empty();
     }
     
     public List<Contact> listAll() {

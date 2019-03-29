@@ -4,14 +4,16 @@ import br.edu.ifpb.dac.contactlist.model.Contact;
 import br.edu.ifpb.dac.contactlist.infra.ManagerContact;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
+//import javax.inject.Named;
 
 
-@Named("contact")
+@ManagedBean(name = "contactCtrl")
 @RequestScoped
 public class ContactController implements Serializable {
     
@@ -23,60 +25,80 @@ public class ContactController implements Serializable {
     private String email;
     private String phone;
     
+    private List<Contact> contacts = new ArrayList<>();
+    
+    ManagerContact mConact = new ManagerContact();
+    
     FacesContext context = FacesContext.getCurrentInstance();
-
-    ManagerContact mc = new ManagerContact();
     
     
     public String saveContact() {
-        contact = new Contact(name, email, phone, LocalDate.now());
+               
+//        contact = new Contact(this.name, this.email, this.phone, LocalDate.now());
         
-        if (this.mc.find(phone) == null) {
-            this.mc.save(contact);
+//        if (this.mConact.find(this.phone) == null) {
+            this.contact.setBirthday(LocalDate.now());
+            System.out.println(this.contact.toString());
+            this.mConact.save(this.contact);
             context.addMessage(null, new FacesMessage("Success: Contact registed successfuly."));
             return null;
-        }  this.mc.save(contact);
-        
-        context.addMessage(null, new FacesMessage("Error: Email or Phone alread in use."));    
-        return null;
+//        }
+//        
+//        this.contact = new Contact();
+//        context.addMessage(null, new FacesMessage("Error: Phone alread in use."));    
+//        return null;
     }
     
 //    public Contact searchContactByName(String name) {
-//        ManagerContact mc = new ManagerContact(em);
-//        Contact contact = mc.search(name);
+//        ManagerContact mConact = new ManagerContact(em);
+//        Contact contact = mConact.search(name);
 //        return contact;
 //    }
 //    
     public String updateContact(int id) {
         System.out.println("User id:" + id);
         
-        contact = new Contact(id, name, email, phone, birthday);
+//        contact = new Contact(id, name, email, phone, birthday);
         System.out.println("User info:" + contact.toString());
-        Contact c = this.mc.update(id, contact);
+//        Contact c = this.mConact.update(id, this.contact);
+        Contact c = this.mConact.update(id, this.contact);
         context.addMessage(null, new FacesMessage("Success: Contact updated successfuly."));
         return null;
     }
     
-    public Contact remove(int id){
-        System.out.println("c.id: " + id);
-        mc.remove(id);
-        context.addMessage(null, new FacesMessage("Success: Contact deleted."));
-        return contact;
+    public String remove(Contact c){       
+        if (mConact.remove(c)) {
+            context.addMessage(null, new FacesMessage("Success: Contact deleted."));
+            listAllContacts();
+            return null;
+        }
+        context.addMessage(null, new FacesMessage("Failed: Contact dont removed."));
+        listAllContacts();
+        return null;
     }
-//    
+   
     public List<Contact> listAllContacts() {
-        return this.mc.listAll();
+        return this.mConact.listAll();
     }
 //    
 //    public List<Contact> listContactsOrderByName(){
-//        ManagerContact mc = new ManagerContact(em);
-//        return mc.listOrderByName();
+//        ManagerContact mConact = new ManagerContact(em);
+//        return mConact.listOrderByName();
 //    }
 //    
 //    public List<Contact> listContactsGroup(String letter){
-//        ManagerContact mc = new ManagerContact(em);
-//        return mc.listGroup(letter);
+//        ManagerContact mConact = new ManagerContact(em);
+//        return mConact.listGroup(letter);
 //    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+    
 
     public int getId() {
         return id;
