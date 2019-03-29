@@ -24,6 +24,8 @@ public class ContactController implements Serializable {
     private LocalDate birthday;
     private String email;
     private String phone;
+    private String edit = null;
+    private String search;
     
     private List<Contact> contacts = new ArrayList<>();
     
@@ -37,7 +39,7 @@ public class ContactController implements Serializable {
 //        contact = new Contact(this.name, this.email, this.phone, LocalDate.now());
         
 //        if (this.mConact.find(this.phone) == null) {
-            this.contact.setBirthday(LocalDate.now());
+            this.contact.setBirthday(LocalDate.now()+"");
             System.out.println(this.contact.toString());
             this.mConact.save(this.contact);
             context.addMessage(null, new FacesMessage("Success: Contact registed successfuly."));
@@ -49,22 +51,33 @@ public class ContactController implements Serializable {
 //        return null;
     }
     
-//    public Contact searchContactByName(String name) {
-//        ManagerContact mConact = new ManagerContact(em);
-//        Contact contact = mConact.search(name);
-//        return contact;
-//    }
+    public String searchContactByName() {
+        this.contacts = this.mConact.search(this.search);
+        return "/search.xhtml";
+    }
 //    
-    public String updateContact(int id) {
-        System.out.println("User id:" + id);
-        
-//        contact = new Contact(id, name, email, phone, birthday);
-        System.out.println("User info:" + contact.toString());
+//    public String updateContact(int id) {
+    
+    
+    public String updateContact(Contact c) {        
+        System.out.println("Update user id:" + c.getId());
+        System.out.println("Update user:" + c);
+        this.edit = "edit";
 //        Contact c = this.mConact.update(id, this.contact);
-        Contact c = this.mConact.update(id, this.contact);
-        context.addMessage(null, new FacesMessage("Success: Contact updated successfuly."));
+//        update(c);
+        if (this.mConact.update(c)) {
+            this.edit = "edit";
+            context.addMessage(null, new FacesMessage("Success: Contact updated successfuly."));
+        }
+
         return null;
     }
+    
+//    public String update(Contact contact) {
+//        Contact c = this.mConact.update(contact.getId(), contact);
+//        context.addMessage(null, new FacesMessage("Success: Contact updated successfuly."));
+//        return null;
+//    }
     
     public String remove(Contact c){       
         if (mConact.remove(c)) {
@@ -80,16 +93,14 @@ public class ContactController implements Serializable {
     public List<Contact> listAllContacts() {
         return this.mConact.listAll();
     }
-//    
-//    public List<Contact> listContactsOrderByName(){
-//        ManagerContact mConact = new ManagerContact(em);
-//        return mConact.listOrderByName();
-//    }
-//    
-//    public List<Contact> listContactsGroup(String letter){
-//        ManagerContact mConact = new ManagerContact(em);
-//        return mConact.listGroup(letter);
-//    }
+    
+    public List<Contact> listContactsOrderByName(){
+        return this.mConact.listOrderByName();
+    }
+    
+    public List<Contact> listContactsGroup(String letter){
+        return this.mConact.listGroup(letter);
+    }
 
     public Contact getContact() {
         return contact;
@@ -140,6 +151,29 @@ public class ContactController implements Serializable {
         this.phone = phone;
     }
 
-    
+    public String getEdit() {
+        return edit;
+    }
+
+    public void setEdit(String edit) {
+        this.edit = edit;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
     
 }

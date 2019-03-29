@@ -8,3 +8,4 @@ mvn clean package
 
 docker build -t payara/app .
 docker run -p 4848:4848 -p 8081:8080 --name app --link database:host-banco payara/app
+

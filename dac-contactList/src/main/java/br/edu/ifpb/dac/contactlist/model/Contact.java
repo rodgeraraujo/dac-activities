@@ -24,20 +24,20 @@ public class Contact implements Serializable{
     
 //    @Column(unique=true)
     private String phone;
-    private LocalDate birthday;
+    private String birthday;
 
     public Contact() {
     }
     
-    public Contact(int id, String name, String email, String phone, LocalDate birthday) {
+    public Contact(int id, String name, String email, String phone, String birthday) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.birthday = LocalDate.now();
+        this.birthday = LocalDate.now()+"";
     }
     
-    public Contact(String name, String email, String phone, LocalDate birthday) {
+    public Contact(String name, String email, String phone, String birthday) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -80,11 +80,11 @@ public class Contact implements Serializable{
         this.phone = phone;
     }
 
-    public LocalDate getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

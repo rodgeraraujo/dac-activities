@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro.min.css"/>
+      <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-colors.min.css"/>
+      <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-rtl.min.css"/>
+      <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-icons.min.css"/>
+      <script>
+         function showDialog(id){
+             var dialog = $("#"+id).data('dialog');
+             if (!dialog.element.data('opened')) {
+                 dialog.open();
+             } else {
+                 dialog.close();
+             }
+         }
+      </script>
+      
+       <style>
+
+            input.button{
+                /*padding: 4px;*/
+                margin: 3px;
+            }
+
+        </style>
+      
+        <title>Contact's List</title>
+       
+    </h:head>
+    <h:body>
+         <div class="container page-content">
+         <div data-role="appbar" data-expand-point="md">
+            <a href="#" class="brand no-hover">
+                <b><h3>yourContacts</h3></b>
+            </a>
+            <ul class="app-bar-menu">
+               <li><a href="./home.xhtml">Home</a></li>
+            </ul>
+         </div>
+         <br/>
+       
+         <c:forEach items="#{contactCtrl.contacts}" var="c">
+            <label>Search result</label>
+            <h:form>
+                <h:dataTable>     
+                    <h:column>
+                        <f:facet name="header">#</f:facet>
+                        <h:inputText id="id" value="#{c.id}" size="5" disabled="true"/> <br/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:inputText id="name" value="#{c.name}" size="30" disabled="true"/> <br/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                       <h:inputText id="email" value="#{c.email}" size="30" disabled="true"/> <br/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Birthday</f:facet>
+                        <h:inputText id="birthday" value="#{c.birthday}" size="25" disabled="true"/> <br/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                       <h:inputText id="phone" value="#{c.phone}" size="30" disabled="true"/> <br/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </c:forEach>
+   </div>
+   
+      
+    </h:body>
+</html>
+

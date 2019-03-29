@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Contact's List</title>
+        <link href="https://metroui.org.ua/metro/css/metro-all.css?ver=4.2.39" rel="stylesheet"/>
+        <link href="https://metroui.org.ua/highlight/styles/github.css" rel="stylesheet"/>
+        <link href="https://metroui.org.ua/docsearch/docsearch.min.css" rel="stylesheet"/>
+        <link href="https://metroui.org.ua/css/site.css" rel="stylesheet"/>
+        <style>
+
+            input.button{
+                /*padding: 4px;*/
+                margin: 3px;
+            }
+
+        </style>
+    </h:head>
+    <h:body>
+
+        <div class="grid">
+            <div class="cell-4 offset-4">
+            <h:panelGroup rendered="#{not empty user}">
+                <h5><p>Welcome, #{user.name}</p></h5>
+                <h:form>
+                    <h:commandButton class="button yellow" value="logout" action="#{login.logout}" />
+                </h:form>
+                <hr/>  
+            </h:panelGroup>
+        
+            <h:form>
+                <h2>Update contact info</h2>
+                <br/>
+                <h:messages globalOnly="true" style="color:green;margin:8px;" />
+                <h:panelGrid>
+
+                    <h:inputHidden id="id" value="#{contactCtrl.contact.id}"/> <br/>
+                        
+                    <div class="form-group">
+                        <label>Name</label>
+                        <h:inputText id="name" value="#{contactCtrl.contact.name}" size="30" required="true"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <h:inputText id="email" value="#{contactCtrl.contact.email}" size="30" required="true"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <h:inputText id="phone" value="#{contactCtrl.contact.phone}" size="30" required="true"/> <br/>
+                                     <!--readonly="{not contact.editable}" /> <br/>-->
+                    </div>
+
+<!--                    <h:selectOneListbox id="list" size="10" value="{bean.todo}"
+                                        valueChangeListener="{bean.valueChanged}">
+                        <f:selectItems value="{bean.data}"/>
+                        <f:ajax execute="@this" render="msg name desc" />
+
+                        <f:attribute name="beanattr" value="{bean}"/>
+                        <f:converter converterId="todoConvertor"/>
+                    </h:selectOneListbox>-->
+                    <!--<br/>-->
+
+                </h:panelGrid>
+                
+                <hr/>  
+                
+                <h:panelGrid columns="5">
+                    <h:commandButton class="button" value="New" actionListener="#{contactCtrl.saveContact()}"/>
+                    <h:commandButton class="button" value="Update" actionListener="#{contactCtrl.updateContact(contactCtrl.contact.id)}"/>
+                    <!--<h:commandButton class="button" value="Save" actionListener="{contact.updateContact(id, c)}"/>-->
+                    <!--<h:commandButton class="button" value="Delete" actionListener="{contact.remove(id)}"/>-->
+                    <!--<h:commandButton class="button" value="Cancel" actionListener="{contactController.cancel}"/>-->
+                </h:panelGrid>
+                <br/>
+                <!--<br /><h:outputText id="msg" value="{bean.message}" />-->
+
+            </h:form>
+            
+            <h:form>
+                <label>Contacts list</label>
+                <h:dataTable value="#{contactCtrl.listAllContacts()}" var="c"
+                             styleClass="table striped compact"
+                             rowClasses="cell-hover">
+                             <!--headerClass="sortable-column sort-asc">-->
+<!--                    <thead>
+                        <tr>
+                            <th class="sortable-column sort-asc">#</th>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>E-mail</th>
+                            <th>Birthday</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>-->
+                    <h:column>
+                        <f:facet name="header">#</f:facet>
+                        #{c.id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{c.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        #{c.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Birthday</f:facet>
+                        #{c.birthday}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                        #{c.phone}
+                    </h:column>
+                        <h:column>
+                            <h:commandButton value="x" action="#{contactCtrl.remove(c)}" 
+                                         class="btn-floating"> 
+                        </h:commandButton>
+                    </h:column>
+<!--                    <h:column>
+                        <h:commandButton value="edit" action="" class="btn"/>
+                    </h:column>-->
+                </h:dataTable>
+            </h:form>
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

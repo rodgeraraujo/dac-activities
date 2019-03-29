@@ -2,14 +2,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Contact's List</title>
-        <link href="https://metroui.org.ua/metro/css/metro-all.css?ver=4.2.39" rel="stylesheet"/>
-        <link href="https://metroui.org.ua/highlight/styles/github.css" rel="stylesheet"/>
-        <link href="https://metroui.org.ua/docsearch/docsearch.min.css" rel="stylesheet"/>
-        <link href="https://metroui.org.ua/css/site.css" rel="stylesheet"/>
-        <style>
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro.min.css"/>
+      <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-colors.min.css"/>
+      <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-rtl.min.css"/>
+      <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-icons.min.css"/>
+      <script>
+         function showDialog(id){
+             var dialog = $("#"+id).data('dialog');
+             if (!dialog.element.data('opened')) {
+                 dialog.open();
+             } else {
+                 dialog.close();
+             }
+         }
+      </script>
+      
+       <style>
 
             input.button{
                 /*padding: 4px;*/
@@ -17,121 +28,115 @@
             }
 
         </style>
+      
+        <title>Contact's List</title>
+       
     </h:head>
     <h:body>
-
-        <div class="grid">
-            <div class="cell-4 offset-4">
-            <h:panelGroup rendered="#{not empty user}">
-                <h5><p>Welcome, #{user.name}</p></h5>
+         <div class="container page-content">
+         <div data-role="appbar" data-expand-point="md">
+            <a href="#" class="brand no-hover">
+                <b><h3>yourContacts</h3></b>
+            </a>
+            <ul class="app-bar-menu">
+               <li><a href="./home.xhtml">Home</a></li>
+               <li>
+                  <button class="button primary" onclick="showDialog('dialog')">New contact</button>
+               </li>
+               <li><a href="#">Order contacts</a></li>
+            </ul>
+         </div>
+         <br/>
+         <br/>
+         <br/>
+         <div data-role="dialog" id="dialog" class="padding20" data-width="600">
+            <div class="dialog-title">Add a new contact</div>
+            <div class="dialog-content">
                 <h:form>
-                    <h:commandButton class="button yellow" value="logout" action="#{login.logout}" />
+                    <h:messages globalOnly="true" style="color:green;margin:8px;" />
+                    <h:panelGrid>
+
+                        <h:inputHidden id="id" value="#{contactCtrl.contact.id}"/> <br/>
+
+                        <div class="form-group">
+                            <label>Name</label>
+                            <h:inputText id="name" value="#{contactCtrl.contact.name}" size="30" required="true"/> <br/>
+                                         <!--readonly="{not contact.editable}" /> <br/>-->
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <h:inputText id="email" value="#{contactCtrl.contact.email}" size="30" required="true"/> <br/>
+                                         <!--readonly="{not contact.editable}" /> <br/>-->
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <h:inputText id="phone" value="#{contactCtrl.contact.phone}" size="30" required="true"/> <br/>
+                                         <!--readonly="{not contact.editable}" /> <br/>-->
+                        </div>
+                    </h:panelGrid>
+
+                    <hr/>  
+
+                    <h:panelGrid columns="5">                        
+                        <div class="dialog-actions">
+                            <h:commandButton class="button primary"  value="Save" actionListener="#{contactCtrl.saveContact()}"/>
+                            <button class="button warning js-dialog-close">Cancel</button>
+                        </div>
+                    </h:panelGrid>
+                    <br/>
                 </h:form>
-                <hr/>  
-            </h:panelGroup>
-        
-            <h:form>
-
-                <h2>Contact's List</h2>
-                <br/>
-                <h:messages globalOnly="true" style="color:green;margin:8px;" />
-                <h:panelGrid>
-
-                    <h:inputHidden id="id" value="#{contactCtrl.contact.id}"/> <br/>
-                        
-                    <div class="form-group">
-                        <label>Name</label>
-                        <h:inputText id="name" value="#{contactCtrl.contact.name}" size="30" required="true"/> <br/>
-                                     <!--readonly="{not contact.editable}" /> <br/>-->
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <h:inputText id="email" value="#{contactCtrl.contact.email}" size="30" required="true"/> <br/>
-                                     <!--readonly="{not contact.editable}" /> <br/>-->
-                    </div>
-
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <h:inputText id="phone" value="#{contactCtrl.contact.phone}" size="30" required="true"/> <br/>
-                                     <!--readonly="{not contact.editable}" /> <br/>-->
-                    </div>
-
-<!--                    <h:selectOneListbox id="list" size="10" value="{bean.todo}"
-                                        valueChangeListener="{bean.valueChanged}">
-                        <f:selectItems value="{bean.data}"/>
-                        <f:ajax execute="@this" render="msg name desc" />
-
-                        <f:attribute name="beanattr" value="{bean}"/>
-                        <f:converter converterId="todoConvertor"/>
-                    </h:selectOneListbox>-->
-                    <!--<br/>-->
-
-                </h:panelGrid>
-                
-                <hr/>  
-                
-                <h:panelGrid columns="5">
-                    <h:commandButton class="button" value="New" actionListener="#{contactCtrl.saveContact()}"/>
-                    <h:commandButton class="button" value="Update" actionListener="#{contactCtrl.updateContact(contactCtrl.contact.id)}"/>
-                    <!--<h:commandButton class="button" value="Save" actionListener="{contact.updateContact(id, c)}"/>-->
-                    <!--<h:commandButton class="button" value="Delete" actionListener="{contact.remove(id)}"/>-->
-                    <!--<h:commandButton class="button" value="Cancel" actionListener="{contactController.cancel}"/>-->
-                </h:panelGrid>
-                <br/>
-                <!--<br /><h:outputText id="msg" value="{bean.message}" />-->
-
-            </h:form>
-            
-            <h:form>
+            </div>
+         </div>
+         
+         <br/>
+                 
+        <h:form class="search">
+            <h:inputText class="input" value="#{contactCtrl.search}"/>
+            <h:commandButton value="" class="button" action="#{contactCtrl.searchContactByName()}"/>
+        </h:form>
+         
+         <h:form>
+                <h:messages globalOnly="true" rendered="#{not empty contactCtrl.edit}" style="color:green;margin:8px;" />
                 <label>Contacts list</label>
                 <h:dataTable value="#{contactCtrl.listAllContacts()}" var="c"
                              styleClass="table striped compact"
                              rowClasses="cell-hover">
-                             <!--headerClass="sortable-column sort-asc">-->
-<!--                    <thead>
-                        <tr>
-                            <th class="sortable-column sort-asc">#</th>
-                            <th>Name</th>
-                            <th>Username</th>
-                            <th>E-mail</th>
-                            <th>Birthday</th>
-                            <th>Phone</th>
-                        </tr>
-                    </thead>-->
+                        
                     <h:column>
                         <f:facet name="header">#</f:facet>
-                        #{c.id}
+                        <h:inputText id="id" value="#{c.id}" size="5" disabled="true"/> <br/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Name</f:facet>
-                        #{c.name}
+                        <h:inputText id="name" value="#{c.name}" size="30" required="true"/> <br/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Email</f:facet>
-                        #{c.email}
+                       <h:inputText id="email" value="#{c.email}" size="30" required="true"/> <br/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Birthday</f:facet>
-                        #{c.birthday}
+                        <h:inputText id="birthday" value="#{c.birthday}" size="25" disabled="true"/> <br/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Phone</f:facet>
-                        #{c.phone}
+                       <h:inputText id="phone" value="#{c.phone}" size="30" required="true"/> <br/>
                     </h:column>
-                        <h:column>
-                            <h:commandButton value="x" action="#{contactCtrl.remove(c)}" 
-                                         class="btn-floating"> 
-                        </h:commandButton>
+                    <h:column>
+                        <h:commandButton value="Update" action="#{contactCtrl.updateContact(c)}" class="button rounded"/>
                     </h:column>
-<!--                    <h:column>
-                        <h:commandButton value="edit" action="" class="btn"/>
-                    </h:column>-->
+                    <h:column>
+                        <h:commandButton action="#{contactCtrl.remove(c)}" value="Delete" class="button rounded"/>
+                    </h:column>
                 </h:dataTable>
             </h:form>
-            </div>
-        </div>
-
+       
+   </div>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+      
     </h:body>
 </html>
 
