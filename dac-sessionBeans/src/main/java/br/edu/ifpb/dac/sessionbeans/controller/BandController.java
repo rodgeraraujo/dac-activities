@@ -1,7 +1,7 @@
 package br.edu.ifpb.dac.sessionbeans.controller;
 
-import br.edu.ifpb.dac.sessionBeans.interfaces.IBand;
-import br.edu.ifpb.dac.sessionBeans.model.Band;
+import br.edu.ifpb.dac.sessionbeans.interfaces.IBand;
+import br.edu.ifpb.dac.sessionbeans.model.Band;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -16,18 +16,6 @@ public class BandController implements Serializable{
     private IBand bandI;
     private Band band = new Band();
 
-    public Band getBand() {
-        return band;
-    }
-
-    public void setBand(Band band) {
-        this.band = band;
-    }
-    
-    public List<Band> allBands() {
-        return this.bandI.allBands();
-    }
-    
     public String save() {
         this.bandI.saveBand(
             this.band                
@@ -50,4 +38,18 @@ public class BandController implements Serializable{
         boolean delete = this.bandI.deleteBand(band.getId());
         return null;
     }
+    
+    
+    public Band getBand() {
+        return band;
+    }
+
+    public void setBand(Band band) {
+        this.band = band;
+    }
+    
+    public List<Band> allBands() {
+        return this.bandI.allBands();
+    }
+   
 }

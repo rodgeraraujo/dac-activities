@@ -1,7 +1,7 @@
 package br.edu.ifpb.dac.sessionbeans.controller;
 
-import br.edu.ifpb.dac.sessionBeans.interfaces.IMember;
-import br.edu.ifpb.dac.sessionBeans.model.Member;
+import br.edu.ifpb.dac.sessionbeans.interfaces.IMember;
+import br.edu.ifpb.dac.sessionbeans.model.Member;
 import java.time.LocalDate;
 import java.util.List;
 import javax.ejb.EJB;

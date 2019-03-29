@@ -1,7 +1,7 @@
-package br.edu.ifpb.dac.sessionBeans.manager;
+package br.edu.ifpb.dac.sessionbeans.manager;
 
-import br.edu.ifpb.dac.sessionBeans.interfaces.IRecommended;
-import br.edu.ifpb.dac.sessionBeans.model.Band;
+import br.edu.ifpb.dac.sessionbeans.interfaces.IRecommended;
+import br.edu.ifpb.dac.sessionbeans.model.Band;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

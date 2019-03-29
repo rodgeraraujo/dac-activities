@@ -1,7 +1,7 @@
-package br.edu.ifpb.dac.sessionBeans.manager;
+package br.edu.ifpb.dac.sessionbeans.manager;
 
-import br.edu.ifpb.dac.sessionBeans.interfaces.IBand;
-import br.edu.ifpb.dac.sessionBeans.model.Band;
+import br.edu.ifpb.dac.sessionbeans.interfaces.IBand;
+import br.edu.ifpb.dac.sessionbeans.model.Band;
 
 import java.util.ArrayList;
 import java.util.Collections;

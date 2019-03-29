@@ -1,5 +1,6 @@
-package br.edu.ifpb.dac.sessionBeans.model;
+package br.edu.ifpb.dac.sessionbeans.model;
 
+import br.edu.ifpb.dac.sessionbeans.model.CPF;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;

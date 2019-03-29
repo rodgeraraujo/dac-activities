@@ -1,7 +1,6 @@
 package br.edu.ifpb.dac.sessionbeans.model;
 
-import br.edu.ifpb.dac.sessionBeans.model.Band;
-import br.edu.ifpb.dac.sessionBeans.model.Style;
+import br.edu.ifpb.dac.sessionbeans.model.Style;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;

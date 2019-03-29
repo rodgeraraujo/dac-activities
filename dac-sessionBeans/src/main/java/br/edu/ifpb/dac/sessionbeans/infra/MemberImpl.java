@@ -1,8 +1,8 @@
 package br.edu.ifpb.dac.sessionbeans.infra;
 
-import br.edu.ifpb.dac.sessionBeans.interfaces.IMember;
-import br.edu.ifpb.dac.sessionBeans.model.CPF;
-import br.edu.ifpb.dac.sessionBeans.model.Member;
+import br.edu.ifpb.dac.sessionbeans.interfaces.IMember;
+import br.edu.ifpb.dac.sessionbeans.model.CPF;
+import br.edu.ifpb.dac.sessionbeans.model.Member;
 
 import javax.sql.DataSource;
 import java.sql.Connection;

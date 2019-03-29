@@ -1,4 +1,4 @@
-package br.edu.ifpb.dac.sessionBeans.model;
+package br.edu.ifpb.dac.sessionbeans.model;
 
 public enum Style {
     Rock,

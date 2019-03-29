@@ -1,6 +1,6 @@
-package br.edu.ifpb.dac.sessionBeans.interfaces;
+package br.edu.ifpb.dac.sessionbeans.interfaces;
 
-import br.edu.ifpb.dac.sessionBeans.model.Member;
+import br.edu.ifpb.dac.sessionbeans.model.Member;
 
 import java.util.List;
 
