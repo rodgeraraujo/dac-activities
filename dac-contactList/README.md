@@ -9,8 +9,11 @@ $ sh run.sh
 ```
 $ sh kill.sh
 ```
-
+* After run go to:
+```
+http://localhost:8081/contactList/
+```
 ### Login
 
 * Username: admin 
-* Password: admin
+* Password: 123

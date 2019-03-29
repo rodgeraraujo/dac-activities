@@ -36,6 +36,11 @@ public class Commander implements Serializable {
         this.country = country;
         this.ships = ships;
     }
+    
+    public Commander(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
 
     public int getId() {
         return id;

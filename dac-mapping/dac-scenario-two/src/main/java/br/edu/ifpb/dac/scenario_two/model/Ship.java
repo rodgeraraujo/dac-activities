@@ -34,6 +34,12 @@ public class Ship implements Serializable{
         this.capacity = capacity;
         this.country = country;
     }
+    
+    public Ship(String name, long capacity, String country) {
+        this.name = name;
+        this.capacity = capacity;
+        this.country = country;
+    }
 
     public int getId() {
         return id;
@@ -67,4 +73,12 @@ public class Ship implements Serializable{
         this.country = country;
     }
 
+    public Commander getCommander() {
+        return commander;
+    }
+
+    public void setCommander(Commander commander) {
+        this.commander = commander;
+    }
+   
 }

@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,9 +36,9 @@ public class Transport implements Serializable {
     @Id
     @Column(name = "load_id", insertable = false, updatable = false)
     private int load_id;
-//    @Id
-//    @Column(name = "product_id", insertable = false, updatable = false)
-//    private int product_id;
+    @Id
+    @Column(name = "product_id", insertable = false, updatable = false)
+    private int product_id;
     @Id
     @Column(name = "ship_id", insertable = false, updatable = false)
     private int ship_id;
@@ -47,12 +48,12 @@ public class Transport implements Serializable {
     private Load load;
 
   
-//    @OneToMany
+    @ManyToMany
 //    @JoinTable(
 //            name = "product_id",
 //            inverseJoinColumns = @JoinColumn(name = "id")
 //    )
-//    private List<Product> product;
+    private List<Product> product;
 
     @OneToOne
     @JoinColumn(name = "ship_id")
@@ -67,7 +68,7 @@ public class Transport implements Serializable {
 
     public Transport(Load load, List<Product> product, Ship ship, Date date, long value) {
         this.load = load;
-//        this.product = product;
+        this.product = product;
         this.ship = ship;
         this.date = date;
         this.value = value;
@@ -80,14 +81,14 @@ public class Transport implements Serializable {
     public void setLoad(Load load) {
         this.load = load;
     }
-//
-//    public List<Product> getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(List<Product> product) {
-//        this.product = product;
-//    }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
 
     public Ship getShip() {
         return ship;

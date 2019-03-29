@@ -29,6 +29,11 @@ public class Load implements Serializable {
         this.origin = origin;
         this.destination = destination;
     }
+    
+    public Load(String origin, String destination) {
+        this.origin = origin;
+        this.destination = destination;
+    }
 
     public int getId() {
         return id;
